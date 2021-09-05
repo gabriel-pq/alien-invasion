@@ -74,11 +74,34 @@ class AlienInvasion:
             self._check_keydown_events(event)
             self._check_keyup_events(event)
 
+    def _create_alien(self, alien_number, row_number):
+        """Create an alien and place it in the row."""
+        alien = Alien(self)
+        alien_width, alien_height = alien.rect.size
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        alien.rect.y = alien_height + 2 * alien_height * row_number
+        self.aliens.add(alien)
+
     def _create_fleet(self):
         """Create a fleet of aliens."""
         # Create an instance of an alien
         alien = Alien(self)
-        self.aliens.add(alien)
+        alien_width, alien_height = alien.rect.size
+        # Determine the horizontal space on the screen; subtract 2 * alien_width for the margins
+        available_space_x = self.settings.screen_width - (2 * alien_width)
+        # Determine how many aliens can fit on the screen horizontally, having one alien_width space inbetween
+        number_aliens_x = self.settings.screen_width // (2 * alien_width)
+
+        # Determine the number of rows of aliens that fit on the screen
+        ship_height = self.ship.rect.height
+        available_space_y = (self.settings.screen_height - (7 * alien_height) - ship_height)
+        number_rows = available_space_y // (2 * alien_height)
+
+        # Creste the full fleet of aliens
+        for row_number in range(number_rows):
+            for alien_number in range(number_aliens_x):
+                self._create_alien(alien_number, row_number)
 
     def _update_screen(self):
         # Redraw the screen during each pass through the loop.
