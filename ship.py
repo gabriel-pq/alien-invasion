@@ -11,9 +11,12 @@ class Ship:
 
         # Load the ship image and get its rect.
         self.image = pygame.image.load('images/ship.bmp')
+
         # Resize the ship image.
         self.image = pygame.transform.scale(self.image, (53, 72))
+
         self.rect = self.image.get_rect()
+
         # Start each new ship the the bottom center of the screen.
         self.rect.midbottom = self.screen_rect.midbottom
 
@@ -25,17 +28,21 @@ class Ship:
 
         # Ship speed
         self.ship_speed = self.settings.ship_speed
+
         # Adjust 'x' rect variable because it supports only integers
         self.x = float(self.rect.x)
+
         # Adjust 'y' rect variable because it supports only integers
         self.y = float(self.rect.y)
 
     def blitme(self):
         """Draw the ship at its current location."""
+
         self.screen.blit(self.image, self.rect)
 
     def update(self):
         """Updating the ship's position based on the movement flag"""
+
         # Update the 'x' value of the ship
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.ship_speed
@@ -49,11 +56,13 @@ class Ship:
 
         # Update the 'x' rect value
         self.rect.x = self.x
+
         # Update the 'y' rect value
         self.rect.y = self.y
 
     def center_ship(self):
         """center the ship on the screen."""
+
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
