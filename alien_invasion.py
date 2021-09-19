@@ -165,7 +165,8 @@ class AlienInvasion:
 		# Render the ship on the background.
 		self.ship.blitme()
 		for bullet in self.bullets.sprites():
-			bullet.draw_bullet()
+			# bullet.draw_bullet()
+			bullet.blitme()
 		# Draw aliens on the screen
 		self.aliens.draw(self.screen)
 		# Make the most recently drawn screen visible.

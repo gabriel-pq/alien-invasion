@@ -10,13 +10,19 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
-        self.color = self.settings.bullet_color
+        # self.color = self.settings.bullet_color
 
         # Create a bullet rect at (0, 0) and then set correct position.
-        self.rect = pygame.Rect(0, 0, self.settings.bullet_width, self.settings.bullet_height)
+        # self.rect = pygame.Rect(0, 0, self.settings.bullet_width, self.settings.bullet_height)
+        # Load the alien image and set its rect attribute.
+        self.image = pygame.image.load('images/bullet.png')
+        # Resize the ship image.
+        self.image = pygame.transform.scale(self.image, (self.settings.bullet_width, self.settings.bullet_height))
+        self.rect = self.image.get_rect()
         self.rect.midtop = ai_game.ship.rect.midtop
+        self.rect.top = ai_game.ship.rect.top - self.settings.bullet_height + 15
 
-        # Store the bullet's posotion as a decimal value.
+        # Store the bullet's position as a decimal value.
         self.y = float(self.rect.y)
 
     def update(self):
@@ -26,6 +32,10 @@ class Bullet(Sprite):
         # Update the rect position
         self.rect.y = self.y
 
-    def draw_bullet(self):
-        """Draw the bullet to the screen."""
-        pygame.draw.rect(self.screen, self.color, self.rect)
+    # def draw_bullet(self):
+    #     """Draw the bullet to the screen."""
+    #     pygame.draw.rect(self.screen, self.color, self.rect)
+
+    def blitme(self):
+        """Draw the bullet at its current location."""
+        self.screen.blit(self.image, self.rect)
