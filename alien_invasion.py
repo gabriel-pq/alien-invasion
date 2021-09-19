@@ -44,6 +44,9 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
         # Print the len of the bullets group to check if the bullets are removed after no longer present on the screen
         # print(len(self.bullets))
+        # Check for any bullets that have hit an alien.
+        # If so, get rid of the bullet and the alien
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
     def _check_keydown_events(self, event):
         """Respond to keypress."""
