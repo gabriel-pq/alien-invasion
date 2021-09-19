@@ -19,7 +19,7 @@ class AlienInvasion:
 		# Create a display window and set the dimension of the window.
 		self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
-		# For fullcreeen mode
+		# For fullscreen mode
 		# self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 		# self.settings.screen_width = self.screen.get_rect().width
 		# self.settings.screen_height = self.screen.get_rect().height
@@ -42,7 +42,7 @@ class AlienInvasion:
 
 	def _update_bullets(self):
 		self.bullets.update()
-		# Get rid of the bullets that have dissapeared.
+		# Get rid of the bullets that have disappeared.
 		for bullet in self.bullets.copy():
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
@@ -199,9 +199,6 @@ class AlienInvasion:
 				self._update_aliens()
 			# Redraw everything on the screen during each pass through the loop.
 			self._update_screen()
-			print('Ship limit:', self.stats.ship_left)
-			print('Alien Speed', self.stats.settings.alien_speed)
-			print('Fleet speed', self.stats.settings.fleet_drop_speed)
 
 
 if __name__ == '__main__':

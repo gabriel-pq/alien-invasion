@@ -7,6 +7,7 @@ class Ship:
     def __init__(self, ai_game):
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
+        self.settings = ai_game.settings
 
         # Load the ship image and get its rect.
         self.image = pygame.image.load('images/ship.bmp')
@@ -20,10 +21,10 @@ class Ship:
         self.moving_right = False
         self.moving_left = False
         self.moving_up = False
-        self.moving_down =False
+        self.moving_down = False
 
         # Ship speed
-        self.ship_speed = 1.5
+        self.ship_speed = self.settings.ship_speed
         # Adjust 'x' rect variable because it supports only integers
         self.x = float(self.rect.x)
         # Adjust 'y' rect variable because it supports only integers
@@ -41,9 +42,9 @@ class Ship:
         elif self.moving_left and self.rect.left > 0:
             self.x -= self.ship_speed
 
-        if self.moving_up and self.rect.right < self.screen_rect.right:
+        if self.moving_up and self.rect.top > self.screen_rect.top:
             self.y -= self.ship_speed
-        elif self.moving_down and self.rect.left > 0:
+        elif self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.y += self.ship_speed
 
         # Update the 'x' rect value
