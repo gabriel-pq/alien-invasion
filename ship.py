@@ -19,11 +19,15 @@ class Ship:
         # Movement flags
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down =False
 
         # Ship speed
         self.ship_speed = 1.5
         # Adjust 'x' rect variable because it supports only integers
         self.x = float(self.rect.x)
+        # Adjust 'y' rect variable because it supports only integers
+        self.y = float(self.rect.y)
 
     def blitme(self):
         """Draw the ship at its current location."""
@@ -37,10 +41,18 @@ class Ship:
         elif self.moving_left and self.rect.left > 0:
             self.x -= self.ship_speed
 
+        if self.moving_up and self.rect.right < self.screen_rect.right:
+            self.y -= self.ship_speed
+        elif self.moving_down and self.rect.left > 0:
+            self.y += self.ship_speed
+
         # Update the 'x' rect value
         self.rect.x = self.x
+        # Update the 'y' rect value
+        self.rect.y = self.y
 
     def center_ship(self):
         """center the ship on the screen."""
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
