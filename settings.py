@@ -10,13 +10,13 @@ class Settings:
 		self.bg_color = (230, 230, 230)
 
 		# Bullet settings
-		self.bullets_allowed = 70
+		self.bullets_allowed = 30
 		self.bullet_width = 30
 		self.bullet_height = 60
 		self.bullet_color = (60, 60, 60)
 
 		# Alien settings
-		self.fleet_drop_speed = 5
+		self.fleet_drop_speed = 10
 
 		# Ship no of respawns
 		self.ship_limit = 2
