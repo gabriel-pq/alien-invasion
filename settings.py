@@ -19,7 +19,7 @@ class Settings:
 		self.fleet_drop_speed = 10
 
 		# Ship no of respawns
-		self.ship_limit = 2
+		self.ship_limit = 3
 
 		self.speedup_scale = 1.1
 
